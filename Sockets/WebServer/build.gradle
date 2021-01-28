@@ -3,6 +3,14 @@ apply plugin: 'application'
 
 //define main class
 mainClassName = 'SimpleServer'
+allprojects{
+  dependencies{
+    repositories{
+      mavenCentral()
+    }
+    compile("org.json:json:20201115")
+  }
+}
 
 task SimpleWebServer(type: JavaExec) {
   group 'http'
