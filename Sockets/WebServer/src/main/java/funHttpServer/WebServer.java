@@ -201,9 +201,11 @@ class WebServer {
           // extract path parameters
           query_pairs = splitQuery(request.replace("multiply?", ""));
 
+          try{
           // extract required fields from parameters
           Integer num1 = Integer.parseInt(query_pairs.get("num1"));
           Integer num2 = Integer.parseInt(query_pairs.get("num2"));
+          
 
           // do math
           Integer result = num1 * num2;
@@ -216,6 +218,11 @@ class WebServer {
 
           // TODO: Include error handling here with a correct error code and
           // a response that makes sense
+        }catch(Exception exception){
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n");
+          builder.append("Please input valid numbers");
+        }
 
         } else if (request.contains("github?")) {
           // pulls the query from the request and runs it with GitHub's REST API
